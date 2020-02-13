@@ -1,4 +1,6 @@
-﻿namespace ConferencePlanner.Output
+﻿using ConferencePlanner.Data.Services;
+
+namespace ConferencePlanner.Output
 {
     class Program
     {
@@ -6,11 +8,14 @@
         {
             string bestand = "ConferencePlanner3.txt";
 
-            var planLezer = new PlanLezer();
-            var plan = planLezer.PlanLezen(bestand, "-");
+            var planReader = new PlanReader();
+            var plan = planReader.ReadPlan(bestand, "-");
 
-            DagPlanner dagPlanner = new DagPlanner();
-            dagPlanner.DagPlannen(plan);
+            var dayPlanner = new DayPlanner();
+            dayPlanner.PlanDay(plan);
+
+            var planPrinter = new PlanPrinter();
+            planPrinter.PrintPlan(plan);
         }
     }
 }
