@@ -14,12 +14,12 @@ namespace ConferencePlanner.Data.Services
             dayPlan.AfternoonActivities.ForEach(PrintSingleActivity);
             Console.WriteLine($"Total day duration: {dayPlan.TotalDuration.ToString()}h");
         }
-        public void PrintPlan(List<Activity> activities)
+        public void PrintPlan(List<ActivityStruct> activities)
         {
             activities.ForEach(PrintSingleActivity);
         }
 
-        public void PrintSingleActivity(Activity activity)
+        public void PrintSingleActivity(ActivityStruct activity)
         {
             Console.WriteLine($"Activity (duration): {activity.Name} ({activity.Duration}h)");
         }

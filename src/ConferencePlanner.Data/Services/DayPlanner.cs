@@ -8,12 +8,12 @@ namespace ConferencePlanner.Data.Services
 {
     public class DayPlanner
     {
-        private List<Activity> _activitiesByDuration = new List<Activity>();
-        private List<Activity> _morningActivities = new List<Activity>();
-        private List<Activity> _afternoonActivities = new List<Activity>();
+        private List<ActivityStruct> _activitiesByDuration = new List<ActivityStruct>();
+        private List<ActivityStruct> _morningActivities = new List<ActivityStruct>();
+        private List<ActivityStruct> _afternoonActivities = new List<ActivityStruct>();
         private double _totalDayDuration = 0.0;
 
-        public DayPlan PlanDay(List<Activity> activities)
+        public DayPlan PlanDay(List<ActivityStruct> activities)
         {
             _activitiesByDuration = activities.OrderBy(order => order.Duration).ToList();
 
