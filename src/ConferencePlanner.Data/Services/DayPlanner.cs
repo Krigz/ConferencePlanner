@@ -8,34 +8,36 @@ namespace ConferencePlanner.Data.Services
 {
     public class DayPlanner
     {
+        private List<Activity> _activitiesByDuration = new List<Activity>();
+        private List<Activity> _morningActivities = new List<Activity>();
+        private List<Activity> _afternoonActivities = new List<Activity>();
+        private double _totalDayDuration = 0.0;
+
         public DayPlan PlanDay(List<Activity> activities)
         {
-            List<Activity> activitiesByDuration = activities.OrderBy(order => order.Duration).ToList();
-            List<Activity> morningActivities = new List<Activity>();
-            List<Activity> afternoonActivities = new List<Activity>();
-            double totalDayDuration = 0;
+            _activitiesByDuration = activities.OrderBy(order => order.Duration).ToList();
 
-            foreach (var activity in activitiesByDuration)
+            foreach (var activity in _activitiesByDuration)
             {
                 double newActivityDuration = activity.Duration;
 
-                if (totalDayDuration + newActivityDuration > 8)
+                if (_totalDayDuration + newActivityDuration > 8)
                     continue;
 
-                if (totalDayDuration + newActivityDuration < 5)
+                if (_totalDayDuration + newActivityDuration < 5)
                 {
-                    morningActivities.Add(activity);
+                    _morningActivities.Add(activity);
                 }
                 else
                 {
-                    afternoonActivities.Add(activity);
+                    _afternoonActivities.Add(activity);
                 }
 
-                totalDayDuration += newActivityDuration;
+                _totalDayDuration += newActivityDuration;
                 
             }
 
-            var dayPlan = new DayPlan(morningActivities, afternoonActivities, totalDayDuration);
+            var dayPlan = new DayPlan(_morningActivities, _afternoonActivities, _totalDayDuration);
             return dayPlan;
         }
 

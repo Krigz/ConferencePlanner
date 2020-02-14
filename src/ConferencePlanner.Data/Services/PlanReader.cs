@@ -8,15 +8,15 @@ namespace ConferencePlanner.Data.Services
 {
     public class PlanReader
     {
+
+        private List<Activity> _activities = new List<Activity>();
         public List<Activity> ReadPlan(string path, string separator = "-")
         {
-            List<Activity> activities = new List<Activity>();
-
             try
             {
                 using (var content = File.OpenText(path))
                 {
-                    string activityString = content.ReadLine();
+                    var activityString = content.ReadLine();
 
                     while (activityString != null)
                     {
@@ -24,7 +24,7 @@ namespace ConferencePlanner.Data.Services
                         {
                             string[] temp = activityString.Split(separator);
                             var activity = new Activity(temp[0].Trim(), double.Parse(temp[1].Replace(".", ",")));
-                            activities.Add(activity);
+                            _activities.Add(activity);
 
                             //Console.WriteLine($"{activity.Name} ({activity.Duration}h)");
                             activityString = content.ReadLine();
@@ -37,7 +37,7 @@ namespace ConferencePlanner.Data.Services
                     }
                 }
 
-                return activities;
+                return _activities;
             }
             catch (FileNotFoundException ex)
             {
