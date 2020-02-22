@@ -13,10 +13,16 @@ namespace ConferencePlanner.Data.Services
         private List<ActivityStruct> _afternoonActivities = new List<ActivityStruct>();
         private double _totalDayDuration = 0.0;
 
+        // create list to loop through to find spots
+        //private List<ActivityStruct> _remainingActivities = new List<ActivityStruct>();
+
         public DayPlan PlanDay(List<ActivityStruct> activities)
         {
             _activitiesByDuration = activities.OrderBy(order => order.Duration).ToList();
 
+            //_remainingActivities = activities.ToList();
+
+            // rethink this logic
             foreach (var activity in _activitiesByDuration)
             {
                 double newActivityDuration = activity.Duration;
