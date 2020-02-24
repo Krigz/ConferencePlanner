@@ -8,39 +8,40 @@ namespace ConferencePlanner.Data.Services
 {
     public class DayPlanner
     {
-        private List<ActivityStruct> _activitiesByDuration = new List<ActivityStruct>();
-        private List<ActivityStruct> _morningActivities = new List<ActivityStruct>();
-        private List<ActivityStruct> _afternoonActivities = new List<ActivityStruct>();
+        private List<ActivityStruct> _remainingActivities = new List<ActivityStruct>();
+        private readonly List<ActivityStruct> _morningActivities = new List<ActivityStruct>();
+        private readonly List<ActivityStruct> _afternoonActivities = new List<ActivityStruct>();
         private double _totalDayDuration = 0.0;
-
-        // create list to loop through to find spots
-        //private List<ActivityStruct> _remainingActivities = new List<ActivityStruct>();
+        private const double _maxDayDuration = 8.0;
 
         public DayPlan PlanDay(List<ActivityStruct> activities)
         {
-            _activitiesByDuration = activities.OrderBy(order => order.Duration).ToList();
+            //_activitiesByDuration = activities.OrderBy(order => order.Duration).ToList();
 
-            //_remainingActivities = activities.ToList();
+            _remainingActivities = activities.Reverse<ActivityStruct>().ToList(); // reverse here, to reverse again later in 'foreach'
 
-            // rethink this logic
-            foreach (var activity in _activitiesByDuration)
+            foreach (var activity in _remainingActivities.Reverse<ActivityStruct>()) // reversed again
             {
-                double newActivityDuration = activity.Duration;
-
-                if (_totalDayDuration + newActivityDuration > 8)
-                    continue;
-
-                if (_totalDayDuration + newActivityDuration < 5)
+                if ((_totalDayDuration + activity.Duration) <= _maxDayDuration)
                 {
-                    _morningActivities.Add(activity);
+                    if ((_totalDayDuration + activity.Duration) <= 5)
+                    {
+                        _morningActivities.Add(activity);
+                    }
+                    else
+                    {
+                        _afternoonActivities.Add(activity);
+                    }
+                    //Console.WriteLine($"added: {activity.Name}");
+                    _totalDayDuration += activity.Duration;
+                    //Console.WriteLine($"total duration: {_totalDayDuration}");
+                    _remainingActivities.Remove(activity);
+
                 }
                 else
                 {
-                    _afternoonActivities.Add(activity);
-                }
-
-                _totalDayDuration += newActivityDuration;
-                
+                    continue;
+                }   
             }
 
             var dayPlan = new DayPlan(_morningActivities, _afternoonActivities, _totalDayDuration);

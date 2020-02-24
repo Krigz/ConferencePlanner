@@ -15,7 +15,7 @@ namespace ConferencePlanner.Output
             var dayPlan = dayPlanner.PlanDay(plan);
 
             var planPrinter = new PlanPrinter();
-            planPrinter.PrintPlan(dayPlan);
+            planPrinter.PrintPlanToConsole(dayPlan);
         }
     }
 }
