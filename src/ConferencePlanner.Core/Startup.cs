@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ConferencePlanner.Data;
+using ConferencePlanner.Data.Models;
+using ConferencePlanner.Data.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,7 +27,9 @@ namespace ConferencePlanner.Core
         public void ConfigureServices(IServiceCollection services)
         {
             // temporary usage of in memory data
-            services.AddSingleton<IActivityData, InMemoryActivityData>();
+            //services.AddSingleton<IActivityData, InMemoryActivityData>();
+
+            services.AddSingleton<IActivityData, FromFileActivityData>();
 
             services.AddRazorPages();
         }

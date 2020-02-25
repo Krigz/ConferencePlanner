@@ -8,9 +8,8 @@ namespace ConferencePlanner.Data.Services
 {
     public class PlanReader
     {
-
-        private List<ActivityStruct> _activities = new List<ActivityStruct>();
-        public List<ActivityStruct> ReadPlan(string path, string separator = "-")
+        private readonly List<Activity> _activities = new List<Activity>();
+        public List<Activity> ReadPlan(string path, string separator = "-")
         {
             try
             {
@@ -23,7 +22,7 @@ namespace ConferencePlanner.Data.Services
                         try
                         {
                             string[] temp = activityString.Split(separator);
-                            var activity = new ActivityStruct(temp[0].Trim(), double.Parse(temp[1].Replace(".", ",")));
+                            var activity = new Activity(temp[0].Trim(), double.Parse(temp[1].Replace(".", ",")));
                             _activities.Add(activity);
 
                             //Console.WriteLine($"{activity.Name} ({activity.Duration}h)");

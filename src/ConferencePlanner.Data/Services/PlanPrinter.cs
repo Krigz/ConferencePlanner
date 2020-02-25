@@ -8,46 +8,30 @@ namespace ConferencePlanner.Data.Services
 {
     public class PlanPrinter
     {
-        public void PrintPlanToConsole(DayPlan dayPlan)
+        public void PrintPlanToConsole(IEnumerable<Activity> activities)
         {
-            dayPlan.MorningActivities.ForEach(PrintSingleActivityToConsole);
-            Console.WriteLine("One hour lunch break");
-            dayPlan.AfternoonActivities.ForEach(PrintSingleActivityToConsole);
-            Console.WriteLine($"Total day duration: {dayPlan.TotalDuration.ToString()}h");
-        }
+            //1.1
+            var totalDuration = 0.0;
 
-        public void PrintPlanToWebPage(DayPlan dayPlan)
-        {
-            // todo
-            string[] morningActivities = new string[dayPlan.MorningActivities.Count];
-            string[] afternoonActivities = new string[dayPlan.AfternoonActivities.Count];
-            var index = 0;
-
-            foreach (var morningActivity in dayPlan.MorningActivities)
+            foreach (var activity in activities)
             {
-                morningActivities[index] = morningActivity.ToString();
-                index++;
-            }
-            index = 0;
-            foreach (var afternoonActivity in dayPlan.AfternoonActivities)
-            {
-                morningActivities[index] = afternoonActivity.ToString();
-                index++;
+                Console.WriteLine($"{activity.Name} ({activity.Duration})");
+                totalDuration += activity.Duration;
             }
 
-            string[] allActivities = new string[morningActivities.Length + afternoonActivities.Length + 1];
-            Array.Copy(morningActivities, allActivities, morningActivities.Length);
-            Array.Copy(new string[] { "Lunch break", "1" }, allActivities, 1);
-            Array.Copy(afternoonActivities, allActivities, afternoonActivities.Length);
-            
+            //1.0
+            //dayPlan.MorningActivities.ForEach(PrintSingleActivityToConsole);
+            //Console.WriteLine("One hour lunch break");
+            //dayPlan.AfternoonActivities.ForEach(PrintSingleActivityToConsole);
+            //Console.WriteLine($"Total day duration: {dayPlan.TotalDuration.ToString()}h");
         }
 
-        public void PrintPlanToConsole(List<ActivityStruct> activities)
+        public void PrintPlanToConsole(List<Activity> activities)
         {
             activities.ForEach(PrintSingleActivityToConsole);
         }
 
-        public void PrintSingleActivityToConsole(ActivityStruct activity)
+        public void PrintSingleActivityToConsole(Activity activity)
         {
             Console.WriteLine($"Activity (duration): {activity.Name} ({activity.Duration}h)");
         }

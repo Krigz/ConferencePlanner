@@ -6,45 +6,27 @@
 
 <div class="text-center">
     <h1 class="display-4">Conference Planner</h1>
-    <p>Please find the schedule for today below.</p>
     <div class="text-left">
-        <div>
-            <table class="table">
-                <thead>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td colspan="2" class="text-center h2">Schedule of the Day</td>
+                </tr>
+                <tr>
+                    <th>Activity</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var activity in Model.Activities)
+                {
                     <tr>
-                        <th>Activity</th>
-                        <th>Duration</th>
+                        <td>@activity.Name</td>
+                        <td>@activity.Duration.ToString()</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Shopping</td>
-                        <td>1.30</td>
-                    </tr>
-                    <tr>
-                        <td>Cleaning</td>
-                        <td>1.00</td>
-                    </tr>
-                    <tr>
-                        <td>Gardening</td>
-                        <td>1.00</td>
-                    </tr>
-                    <tr><td colspan="2">Lunch break</td></tr>
-                    <tr>
-                        <td>Cooking</td>
-                        <td>1.30</td>
-                    </tr>
-                    <tr>
-                        <td>Relaxing</td>
-                        <td>1.30</td>
-                    </tr>
-                    <tr>
-                        <td>Eating</td>
-                        <td>0.30</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 

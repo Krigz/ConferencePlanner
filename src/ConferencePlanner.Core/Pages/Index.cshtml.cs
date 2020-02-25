@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ConferencePlanner.Data;
 using ConferencePlanner.Data.Models;
 using ConferencePlanner.Data.Services;
+using ConferencePlanner.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -17,7 +18,7 @@ namespace ConferencePlanner.Core.Pages
         private readonly IActivityData _activityData;
 
         public string Message { get; set; }
-        public IEnumerable<ActivityStruct> Activities { get; set; }
+        public IEnumerable<Activity> Activities { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, IActivityData activityData)
         {
@@ -27,8 +28,8 @@ namespace ConferencePlanner.Core.Pages
 
         public void OnGet()
         {
-            var bestand = "..\\ConferencePlanner.Console\\bin\\Debug\\netcoreapp3.1\\ConferencePlanner.txt";
-            Activities = _activityData.GetAll();
+            Activities = _activityData.CreatePlan(@"..\ConferencePlanner.Console\bin\Debug\netcoreapp3.1\ConferencePlanner3.txt");
+
         }
     }
 }

@@ -6,10 +6,10 @@ namespace ConferencePlanner.Output
     {
         static void Main(string[] args)
         {
-            var bestand = "ConferencePlanner.txt";
+            var file = "ConferencePlanner.txt";
 
             var planReader = new PlanReader();
-            var plan = planReader.ReadPlan(bestand, "-");
+            var plan = planReader.ReadPlan(file, "-");
 
             var dayPlanner = new DayPlanner();
             var dayPlan = dayPlanner.PlanDay(plan);
