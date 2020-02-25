@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ConferencePlanner.Data;
 using ConferencePlanner.Data.Models;
 using ConferencePlanner.Data.Services;
-using ConferencePlanner.Data.Entities;
+using ConferencePlanner.Data.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -28,7 +28,7 @@ namespace ConferencePlanner.Core.Pages
 
         public void OnGet()
         {
-            Activities = _activityData.CreatePlan(@"..\ConferencePlanner.Console\bin\Debug\netcoreapp3.1\ConferencePlanner3.txt");
+            Activities = _activityData.CreatePlan(@"..\ConferencePlanner.Console\bin\Debug\netcoreapp3.1\ConferencePlanner.txt");
 
         }
     }

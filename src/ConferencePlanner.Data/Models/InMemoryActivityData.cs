@@ -11,16 +11,16 @@ namespace ConferencePlanner.Data.Models
         public InMemoryActivityData()
         {
             activities = new List<Activity>()
-            { 
-                new Activity { Name = "Shopping", Duration = 1.5 },
-                new Activity { Name = "Cleaning", Duration = 1 },
-                new Activity { Name = "Napping 1", Duration = 0.5 },
-                new Activity { Name = "Gardening", Duration = 1 },
-                new Activity { Name = "Cooking", Duration = 1.5 },
-                new Activity { Name = "Napping 2", Duration = 0.5 },
-                new Activity { Name = "Relaxing", Duration = 1.5 },
-                new Activity { Name = "Eating", Duration = 0.5 },
-                new Activity { Name = "Napping 3", Duration = 0.5 }
+            {
+                new Activity { Id = 1, Name = "Shopping", Duration = 1.5 },
+                new Activity { Id = 2, Name = "Cleaning", Duration = 1 },
+                new Activity { Id = 3, Name = "Napping 1", Duration = 0.5 },
+                new Activity { Id = 4, Name = "Gardening", Duration = 1 },
+                new Activity { Id = 5, Name = "Cooking", Duration = 1.5 },
+                new Activity { Id = 6, Name = "Napping 2", Duration = 0.5 },
+                new Activity { Id = 7, Name = "Relaxing", Duration = 1.5 },
+                new Activity { Id = 8, Name = "Eating", Duration = 0.5 },
+                new Activity { Id = 9, Name = "Napping 3", Duration = 0.5 }
             };
         }
 

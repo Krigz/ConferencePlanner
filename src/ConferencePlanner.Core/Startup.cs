@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using ConferencePlanner.Data;
 using ConferencePlanner.Data.Models;
-using ConferencePlanner.Data.Entities;
+using ConferencePlanner.Data.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConferencePlanner.Core
 {
@@ -26,6 +27,11 @@ namespace ConferencePlanner.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<ConferencePlannerDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("ConferencePlannerDb"));
+            });
+
             // temporary usage of in memory data
             //services.AddSingleton<IActivityData, InMemoryActivityData>();
 
