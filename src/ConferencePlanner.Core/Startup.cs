@@ -27,15 +27,17 @@ namespace ConferencePlanner.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContextPool<ConferencePlannerDbContext>(options =>
-            //{
-            //    options.UseSqlServer(Configuration.GetConnectionString("ConferencePlannerDb"));
-            //});
+            services.AddDbContextPool<ConferencePlannerDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("ConferencePlannerDb"));
+            });
 
             // temporary usage of in memory data
-            services.AddSingleton<IActivityData, InMemoryActivityData>();
-
+            //services.AddSingleton<IActivityData, InMemoryActivityData>();
+            // temporary usage of from file data
             //services.AddSingleton<IActivityData, FromFileActivityData>();
+
+            services.AddScoped<IActivityData, SqlActivityData>();
 
             services.AddRazorPages();
         }
