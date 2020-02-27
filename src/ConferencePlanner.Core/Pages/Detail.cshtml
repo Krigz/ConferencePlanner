@@ -1,0 +1,26 @@
+﻿@page "{activityId:int}"
+@model ConferencePlanner.Core.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>@Model.Activity.Name</h1>
+
+<a class="btn btn-primary" asp-page="./Edit" asp-route-activityId="@Model.Activity.Id">Edit</a>
+<a class="btn btn-secondary" asp-page="./Delete" asp-route-activityId="@Model.Activity.Id">Delete</a>
+<div>
+    ID: @Model.Activity.Id
+</div>
+<div>
+    Duration: @Model.Activity.Duration
+</div>
+<div>
+    Description: @Model.Activity.Description
+</div>
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+<a asp-page="./Index">Go to Conference Planner</a>

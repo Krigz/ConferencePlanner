@@ -1,0 +1,14 @@
+﻿@page "{activityId:int}"
+@model ConferencePlanner.Core.DeleteModel
+@{
+}
+
+    <p>Do you really want to delete the activity below?</p>
+    <p>Name: @Model.Activity.Name</p>
+    <p>Duration: @Model.Activity.Duration</p>
+    <p>Description: @Model.Activity.Description</p>
+    <form method="post" action="">
+        <input type="hidden" asp-for="@Model.Activity.Id" />
+        <button type="submit" class="btn btn-primary">Delete</button>
+        <a class="btn btn-secondary" asp-page="./Index">Cancel</a>
+    </form>

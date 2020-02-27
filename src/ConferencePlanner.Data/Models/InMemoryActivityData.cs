@@ -24,17 +24,57 @@ namespace ConferencePlanner.Data.Models
             };
         }
 
-        public IEnumerable<Activity> CreatePlan(string source = null)
+        public List<Activity> GetAll()
+        {
+            return activities.OrderBy(a => a.Duration).ToList();
+        }
+
+        public Activity GetById(int id)
+        {
+            return activities.SingleOrDefault(r => r.Id == id);
+        }
+
+        public List<Activity> CreatePlan(string source = null)
         {
             var plan = new DayPlanner();
             return plan.PlanDay(activities);
         }
 
-        public IEnumerable<Activity> GetAll(string source = null)
+        public Activity Add(Activity newActivity)
         {
-            return from a in activities
-                   orderby a.Duration
-                   select a;
+            activities.Add(newActivity);
+            newActivity.Id = activities.Max(a => a.Id) + 1;
+            return newActivity;
+        }
+
+        public Activity Update(Activity updatedActivity)
+        {
+            var activity = activities.SingleOrDefault(r => r.Id == updatedActivity.Id);
+
+            if (activity != null)
+            {
+                activity.Name = updatedActivity.Name;
+                activity.Duration = updatedActivity.Duration;
+                activity.Description = updatedActivity.Description;
+            }
+
+            return activity;
+        }
+
+        public Activity Delete(int id)
+        {
+            var activity = activities.SingleOrDefault(a => a.Id == id);
+            if (activity != null)
+            {
+                activities.Remove(activity);
+            }
+
+            return activity;
+        }
+
+        public int Commit()
+        {
+            return 0;
         }
     }
 }

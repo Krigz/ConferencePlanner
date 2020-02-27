@@ -7,7 +7,12 @@ namespace ConferencePlanner.Data.Models
 {
     public interface IActivityData
     {
-        IEnumerable<Activity> GetAll(string source = "");
-        IEnumerable<Activity> CreatePlan(string source = "");
+        List<Activity> GetAll();
+        List<Activity> CreatePlan(string source = "");
+        Activity GetById(int id);
+        Activity Add(Activity newActivity);
+        Activity Update(Activity updatedActivity);
+        Activity Delete(int id);
+        int Commit();
     }
 }

@@ -16,7 +16,7 @@ namespace ConferencePlanner.Data.Services
         private const double _maxDayDuration = 8.0;
 
         //1.1
-        public IEnumerable<Activity> PlanDay(List<Activity> activities)
+        public List<Activity> PlanDay(List<Activity> activities)
         {
             _remainingActivities = activities.Reverse<Activity>().ToList(); // reverse here, to reverse again later in 'foreach'
 

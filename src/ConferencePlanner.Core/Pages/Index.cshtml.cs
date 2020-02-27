@@ -17,6 +17,7 @@ namespace ConferencePlanner.Core.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly IActivityData _activityData;
 
+        [TempData]
         public string Message { get; set; }
         public IEnumerable<Activity> Activities { get; set; }
 

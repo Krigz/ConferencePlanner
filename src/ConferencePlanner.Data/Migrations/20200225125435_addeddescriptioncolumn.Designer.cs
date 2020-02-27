@@ -3,14 +3,16 @@ using ConferencePlanner.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConferencePlanner.Data.Migrations
 {
     [DbContext(typeof(ConferencePlannerDbContext))]
-    partial class ConferencePlannerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200225125435_addeddescriptioncolumn")]
+    partial class addeddescriptioncolumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
